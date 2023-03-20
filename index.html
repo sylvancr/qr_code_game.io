@@ -1,10 +1,52 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>qr_code_game.io</title>
-	<head>
-	<body>
-		<h1>Hello World</h1>
-		<p>I'm hosted with GitHub Pages.</p>
-	</body>
+<title>To-Do List</title>
+<h1>To-Do List</h1>
+<ul id="todo-list">
+ 	<li>
+        <input type="checkbox" id="task1" onchange="toggleToDo()"><label for="task1">Task 1</label></li>
+ 	<li>
+        <input type="checkbox" id="task2" onchange="toggleToDo()"><label for="task2">Task 2</label></li>
+ 	<li>
+        <input type="checkbox" id="task3" onchange="toggleToDo()"><label for="task3">Task 3</label></li>
+</ul>
+<form>
+      <input type="text" id="new-task-input" name="newTask" placeholder="New task">
+<button type="button" onclick="addToDo()">Add</button>
+</form>    <script><br />
+      function toggleToDo() {<br />
+        var checkboxes = document.querySelectorAll('input[type="checkbox"]');<br />
+        var todoList = document.getElementById("todo-list");<br />
+        for (var i = 0; i < checkboxes.length; i++) {
+          var checkbox = checkboxes[i];
+          var listItem = checkbox.parentNode;
+          if (checkbox.checked) {
+            listItem.classList.add("task-checked");
+          } else {
+            listItem.classList.remove("task-checked");
+          }
+        }
+      }
+
+      function addToDo() {
+        var todoList = document.getElementById("todo-list");
+        var newTaskInput = document.getElementById("new-task-input");
+        var newTask = document.createElement("li");
+        var taskCheckbox = document.createElement("input");
+        taskCheckbox.type = "checkbox";
+        taskCheckbox.onchange = toggleToDo;
+        var taskText = document.createTextNode(newTaskInput.value);
+        newTask.appendChild(taskCheckbox);
+        newTask.appendChild(taskText);
+        todoList.appendChild(newTask);
+        newTaskInput.value = "";
+      }
+    </script>
+
+<style>
+      .task-checked {<br />
+        text-decoration: line-through;<br />
+        color: gray;<br />
+      }<br />
+    </style>
 </html>
